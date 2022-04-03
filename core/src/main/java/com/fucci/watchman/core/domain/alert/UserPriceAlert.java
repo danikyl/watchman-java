@@ -5,7 +5,7 @@ import com.fucci.watchman.core.domain.user.User;
 import lombok.Builder;
 
 @Builder
-public class PriceAlert {
+public class UserPriceAlert {
     Item item;
     User user;
 }
