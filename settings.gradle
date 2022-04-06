@@ -1,1 +1,5 @@
 rootProject.name = 'watchman'
+include 'job'
+include 'core'
+include 'configuration'
+
