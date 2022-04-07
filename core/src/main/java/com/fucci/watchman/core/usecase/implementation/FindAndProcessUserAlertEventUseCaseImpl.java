@@ -4,6 +4,7 @@ import com.fucci.watchman.core.domain.exchange.FindAndProcessUserAlertEventExcha
 import com.fucci.watchman.core.usecase.FindAndProcessUserAlertEventUseCase;
 import com.fucci.watchman.core.usecase.chain.GetItemsPriceChain;
 import com.fucci.watchman.core.usecase.chain.GetItemsRegisteredForUsersChain;
+import com.fucci.watchman.core.usecase.chain.GetUserAlarmsThatShouldBeTriggeredChain;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +13,13 @@ import org.springframework.stereotype.Component;
 public class FindAndProcessUserAlertEventUseCaseImpl implements FindAndProcessUserAlertEventUseCase {
     private final GetItemsRegisteredForUsersChain getItemsRegisteredForUsersChain;
     private final GetItemsPriceChain getItemsPriceChain;
+    private final GetUserAlarmsThatShouldBeTriggeredChain getUserAlarmsThatShouldBeTriggeredChain;
 
     public void execute() {
         var exchangeDto = FindAndProcessUserAlertEventExchangeDto.builder().build();
         exchangeDto = getItemsRegisteredForUsersChain.execute(exchangeDto);
         exchangeDto = getItemsPriceChain.execute(exchangeDto);
-
+        exchangeDto = getUserAlarmsThatShouldBeTriggeredChain.execute(exchangeDto);
 
         //Change below to include a new step instead of calling the gateway directly
         //eventStreamGateway.publishUserAlertEvent(UserPriceAlert.builder().build());

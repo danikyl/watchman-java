@@ -1,18 +1,18 @@
 package com.fucci.watchman.core.usecase.chain;
 
 import com.fucci.watchman.core.domain.exchange.FindAndProcessUserAlertEventExchangeDto;
-import com.fucci.watchman.core.gateway.repository.port.ItemRepository;
+import com.fucci.watchman.core.ports.repository.UserPriceAlertRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class GetItemsRegisteredForUsersChain {
-    private final ItemRepository itemRepository;
+    private final UserPriceAlertRepository userPriceAlertRepository;
 
     public FindAndProcessUserAlertEventExchangeDto execute(FindAndProcessUserAlertEventExchangeDto dto) {
-        var items = itemRepository.getAllDistinctItems();
-        dto.setItensRegistered(items);
+        var itemSymbols = userPriceAlertRepository.getAllDistinctSymbols();
+        dto.setItemsSymbolToCheck(itemSymbols);
         return dto;
     }
 }
