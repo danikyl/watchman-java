@@ -1,22 +1,27 @@
 package com.fucci.watchman.core.usecase.implementation;
 
-import com.fucci.watchman.core.domain.alert.UserPriceAlert;
-import com.fucci.watchman.core.domain.exchange.ProcessUserAlertEventExchangeDto;
-import com.fucci.watchman.core.gateway.event_stream.port.EventStreamGateway;
+import com.fucci.watchman.core.domain.exchange.FindAndProcessUserAlertEventExchangeDto;
 import com.fucci.watchman.core.usecase.FindAndProcessUserAlertEventUseCase;
-import com.fucci.watchman.core.usecase.chain.GetItemsRegisteredForUsersChain;
+import com.fucci.watchman.core.usecase.chain.GetItemsPriceChain;
+import com.fucci.watchman.core.usecase.chain.GetAllRegisteredItemsChain;
+import com.fucci.watchman.core.usecase.chain.GetUserAlarmsThatShouldBeTriggeredChain;
+import com.fucci.watchman.core.usecase.chain.NotifyUserAboutAlarmChain;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class FindAndProcessUserAlertEventUseCaseImpl implements FindAndProcessUserAlertEventUseCase {
-    private final EventStreamGateway eventStreamGateway;
-    private final GetItemsRegisteredForUsersChain getItemsRegisteredForUsersChain;
+    private final GetAllRegisteredItemsChain getAllRegisteredItemsChain;
+    private final GetItemsPriceChain getItemsPriceChain;
+    private final GetUserAlarmsThatShouldBeTriggeredChain getUserAlarmsThatShouldBeTriggeredChain;
+    private final NotifyUserAboutAlarmChain notifyUserAboutAlarmChain;
 
     public void execute() {
-        var exchangeDto = ProcessUserAlertEventExchangeDto.builder().build();
-        exchangeDto = getItemsRegisteredForUsersChain.execute(exchangeDto);
-        eventStreamGateway.publishUserAlertEvent(UserPriceAlert.builder().build());
+        var exchangeDto = FindAndProcessUserAlertEventExchangeDto.builder().build();
+        exchangeDto = getAllRegisteredItemsChain.execute(exchangeDto);
+        exchangeDto = getItemsPriceChain.execute(exchangeDto);
+        exchangeDto = getUserAlarmsThatShouldBeTriggeredChain.execute(exchangeDto);
+        notifyUserAboutAlarmChain.execute(exchangeDto);
     }
 }

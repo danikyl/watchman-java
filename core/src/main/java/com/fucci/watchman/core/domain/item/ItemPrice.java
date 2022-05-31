@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class ItemPrice {
+    private String symbol;
     private BigDecimal open;
     private BigDecimal high;
     private BigDecimal low;
