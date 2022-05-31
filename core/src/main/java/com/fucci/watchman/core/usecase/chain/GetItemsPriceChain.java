@@ -12,11 +12,11 @@ import java.util.HashMap;
 public class GetItemsPriceChain {
     private final ItemsPriceSourceIntegration itemsPriceSourceIntegration;
 
-    public FindAndProcessUserAlertEventExchangeDto execute(FindAndProcessUserAlertEventExchangeDto dto) {
-        dto.setItemsPriceMap(new HashMap<>());
-        dto.getItemsSymbolToCheck().forEach(symbol -> {
-            dto.getItemsPriceMap().put(symbol, itemsPriceSourceIntegration.getItemPrice(symbol));
+    public FindAndProcessUserAlertEventExchangeDto execute(FindAndProcessUserAlertEventExchangeDto exchangeDto) {
+        exchangeDto.setItemsPriceMap(new HashMap<>());
+        exchangeDto.getItemsSymbolToCheck().forEach(symbol -> {
+            exchangeDto.getItemsPriceMap().put(symbol, itemsPriceSourceIntegration.getItemPrice(symbol));
         });
-        return dto;
+        return exchangeDto;
     }
 }

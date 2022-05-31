@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 public class NotifyUserAboutAlarmChain {
     private final EventStreamGateway eventStreamGateway;
 
-    public FindAndProcessUserAlertEventExchangeDto execute(FindAndProcessUserAlertEventExchangeDto dto) {
-        eventStreamGateway.publishUserAlertEvent(dto.getNotificationsToPublish());
-        return dto;
+    public FindAndProcessUserAlertEventExchangeDto execute(FindAndProcessUserAlertEventExchangeDto exchangeDto) {
+        eventStreamGateway.publishUserAlertEvent(exchangeDto.getNotificationsToPublish());
+        return exchangeDto;
     }
 }

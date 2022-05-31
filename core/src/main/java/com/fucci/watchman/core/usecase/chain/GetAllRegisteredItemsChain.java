@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class GetItemsRegisteredForUsersChain {
+public class GetAllRegisteredItemsChain {
     private final UserPriceAlertRepository userPriceAlertRepository;
 
-    public FindAndProcessUserAlertEventExchangeDto execute(FindAndProcessUserAlertEventExchangeDto dto) {
+    public FindAndProcessUserAlertEventExchangeDto execute(FindAndProcessUserAlertEventExchangeDto exchangeDto) {
         var itemSymbols = userPriceAlertRepository.getAllDistinctSymbols();
-        dto.setItemsSymbolToCheck(itemSymbols);
-        return dto;
+        exchangeDto.setItemsSymbolToCheck(itemSymbols);
+        return exchangeDto;
     }
 }

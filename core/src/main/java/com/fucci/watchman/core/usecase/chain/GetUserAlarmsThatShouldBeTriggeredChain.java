@@ -13,19 +13,19 @@ import java.util.ArrayList;
 public class GetUserAlarmsThatShouldBeTriggeredChain {
     private final UserPriceAlertRepository userPriceAlertRepository;
 
-    public FindAndProcessUserAlertEventExchangeDto execute(FindAndProcessUserAlertEventExchangeDto dto) {
-        dto.setNotificationsToPublish(new ArrayList<>());
+    public FindAndProcessUserAlertEventExchangeDto execute(FindAndProcessUserAlertEventExchangeDto exchangeDto) {
+        exchangeDto.setNotificationsToPublish(new ArrayList<>());
         var alerts = userPriceAlertRepository
-                .getUserPriceAlertBySymbolAndPriceBetween(dto.getItemsPriceMap());
+                .getUserPriceAlertBySymbolAndPriceBetween(exchangeDto.getItemsPriceMap());
         alerts.forEach(userPriceAlert -> {
-            dto.getNotificationsToPublish().add(
+            exchangeDto.getNotificationsToPublish().add(
                     AlertNotification.builder()
                             .itemSymbol(userPriceAlert.getItemSymbol())
-                            .currentPrice(dto.getItemsPriceMap().get(userPriceAlert.getItemSymbol()))
+                            .currentPrice(exchangeDto.getItemsPriceMap().get(userPriceAlert.getItemSymbol()))
                             .userToNotify(userPriceAlert.getUser())
                             .build()
             );
         });
-        return dto;
+        return exchangeDto;
     }
 }
