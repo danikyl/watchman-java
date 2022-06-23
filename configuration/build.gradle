@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    implementation project(':repository')
     implementation project(':core')
     implementation project(':job')
     implementation 'org.springframework.boot:spring-boot-starter'
