@@ -6,7 +6,7 @@ import com.fucci.watchman.core.domain.item.ItemPrice;
 import java.util.List;
 import java.util.Map;
 
-public interface UserPriceAlertRepository {
+public interface UserPriceAlertRepositoryPort {
     List<UserPriceAlert> getUserPriceAlertBySymbolAndPriceBetween(Map<String, ItemPrice> itemPriceMap);
 
     List<String> getAllDistinctSymbols();
