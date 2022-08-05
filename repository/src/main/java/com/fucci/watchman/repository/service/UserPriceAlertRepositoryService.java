@@ -2,7 +2,10 @@ package com.fucci.watchman.repository.service;
 
 import com.fucci.watchman.core.domain.alert.UserPriceAlert;
 import com.fucci.watchman.core.domain.item.ItemPrice;
-import com.fucci.watchman.core.ports.repository.UserPriceAlertRepository;
+import com.fucci.watchman.core.ports.repository.UserPriceAlertRepositoryPort;
+import com.fucci.watchman.repository.domain.alert.UserPriceAlertEntity;
+import com.fucci.watchman.repository.repository.UserPriceAlertRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,7 +13,10 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class UserPriceAlertRepositoryService implements UserPriceAlertRepository {
+@RequiredArgsConstructor
+public class UserPriceAlertRepositoryService implements UserPriceAlertRepositoryPort {
+
+    private final UserPriceAlertRepository userPriceAlertRepository;
 
     public List<UserPriceAlert> getUserPriceAlertBySymbolAndPriceBetween(Map<String, ItemPrice> itemPriceMap) {
         return new ArrayList<>();
