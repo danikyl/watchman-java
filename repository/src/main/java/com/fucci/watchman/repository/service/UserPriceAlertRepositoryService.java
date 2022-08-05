@@ -19,8 +19,6 @@ public class UserPriceAlertRepositoryService implements UserPriceAlertRepository
     private final UserPriceAlertRepository userPriceAlertRepository;
 
     public List<UserPriceAlert> getUserPriceAlertBySymbolAndPriceBetween(Map<String, ItemPrice> itemPriceMap) {
-        userPriceAlertRepository.save(UserPriceAlertEntity.builder().build());
-        System.out.println("212");
         return new ArrayList<>();
     }
 
