@@ -12,9 +12,7 @@ public class StartUserPriceAlertProcessor {
 
     @Scheduled(fixedDelay = 1000)
     public void routine() {
-        System.out.println("TESTE1");
         findAndProcessUserAlertEventUseCase.execute();
-        System.out.println("TESTE2");
 
     }
 }
