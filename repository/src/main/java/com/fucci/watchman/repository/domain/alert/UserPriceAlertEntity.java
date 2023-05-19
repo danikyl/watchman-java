@@ -1,7 +1,6 @@
 package com.fucci.watchman.repository.domain.alert;
 
 import com.fucci.watchman.core.domain.enums.ItemType;
-import com.fucci.watchman.core.domain.user.User;
 import com.fucci.watchman.repository.domain.user.UserEntity;
 import lombok.Builder;
 import lombok.Data;

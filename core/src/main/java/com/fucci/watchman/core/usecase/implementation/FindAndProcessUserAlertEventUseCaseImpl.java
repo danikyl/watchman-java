@@ -2,8 +2,8 @@ package com.fucci.watchman.core.usecase.implementation;
 
 import com.fucci.watchman.core.domain.exchange.FindAndProcessUserAlertEventExchangeDto;
 import com.fucci.watchman.core.usecase.FindAndProcessUserAlertEventUseCase;
-import com.fucci.watchman.core.usecase.chain.GetItemsPriceChain;
 import com.fucci.watchman.core.usecase.chain.GetAllRegisteredItemsChain;
+import com.fucci.watchman.core.usecase.chain.GetItemsPriceChain;
 import com.fucci.watchman.core.usecase.chain.GetUserAlarmsThatShouldBeTriggeredChain;
 import com.fucci.watchman.core.usecase.chain.NotifyUserAboutAlarmChain;
 import lombok.RequiredArgsConstructor;
