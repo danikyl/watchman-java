@@ -3,7 +3,6 @@ package com.fucci.watchman.repository.service;
 import com.fucci.watchman.core.domain.alert.UserPriceAlert;
 import com.fucci.watchman.core.domain.item.ItemPrice;
 import com.fucci.watchman.core.ports.repository.UserPriceAlertRepositoryPort;
-import com.fucci.watchman.repository.domain.alert.UserPriceAlertEntity;
 import com.fucci.watchman.repository.repository.UserPriceAlertRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
